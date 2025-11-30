@@ -25,20 +25,43 @@ body {
     line-height: 1.7;
 }
 
+/* Metin Seçim Rengi (Marka Rengi) */
+::selection {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+/* Özel Scrollbar (Modern Görünüm) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* --- Navbar --- */
+/* --- Navbar (Glassmorphism Efekti Eklendi) --- */
 .navbar {
-    background-color: var(--white-color);
+    background-color: rgba(255, 255, 255, 0.85); /* Yarı şeffaf */
+    backdrop-filter: blur(10px); /* Buzlu cam efekti */
+    -webkit-backdrop-filter: blur(10px); /* Safari desteği */
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* İnce modern çizgi */
 }
 
 .navbar .container {
@@ -72,7 +95,6 @@ body {
     color: var(--primary-color);
 }
 
-
 /* --- Hero Section --- */
 .hero-section {
     background-color: var(--white-color);
@@ -86,15 +108,33 @@ body {
 .hero-content { flex: 1; }
 .hero-image { flex: 1; text-align: center; }
 
-/* DEĞİŞİKLİK BURADA: .logo-placeholder kaldırıldı, .hero-image img güncellendi */
 .hero-image img {
     max-width: 300px;
     height: auto;
+    /* Hero resmine hafif süzülme efekti eklenebilir */
+    animation: float 6s ease-in-out infinite; 
 }
 
-.hero-title { font-size: 3.5rem; font-family: 'Roboto Slab', serif; color: var(--secondary-color); margin-bottom: 1rem; line-height: 1.2; }
-.hero-subtitle { font-size: 1.2rem; margin-bottom: 2rem; }
+/* Basit süzülme animasyonu */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
 
+.hero-title { 
+    font-size: 3.5rem; 
+    font-family: 'Roboto Slab', serif; 
+    color: var(--secondary-color); 
+    margin-bottom: 1rem; 
+    line-height: 1.2; 
+}
+.hero-subtitle { 
+    font-size: 1.2rem; 
+    margin-bottom: 2rem; 
+}
+
+/* --- Butonlar (Tıklama Efekti Eklendi) --- */
 .btn {
     background: var(--primary-color);
     color: var(--white-color);
@@ -103,11 +143,35 @@ body {
     text-decoration: none;
     font-weight: 700;
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); /* Mavi gölge */
+}
+.btn:active {
+    transform: scale(0.98); /* Tıklama hissi */
+    box-shadow: none;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 12px 26px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: all 0.2s ease;
+}
+.btn-outline:hover {
+    background: var(--primary-color);
+    color: var(--white-color);
+    transform: translateY(-2px);
+}
+.btn-outline:active {
+    transform: scale(0.98);
 }
 
 /* --- Genel Bölüm Ayarları --- */
@@ -122,7 +186,7 @@ body {
     padding: 80px 0;
 }
 
-/* --- Project Card --- */
+/* --- Project Card (Geliştirilmiş) --- */
 .project-card {
     display: flex;
     gap: 3rem;
@@ -131,14 +195,30 @@ body {
     padding: 3rem;
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
 }
+.project-card:hover {
+    transform: translateY(-5px); /* Kart hafifçe yukarı kalkar */
+}
+
 .project-image { flex-basis: 40%; }
-.project-image img { width: 100%; border-radius: 8px; }
+
+.project-image img { 
+    width: 100%; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Resme derinlik */
+    transition: transform 0.3s ease;
+}
+
+/* Kartın üzerine gelince resim hafif büyüsün */
+.project-card:hover .project-image img {
+    transform: scale(1.02);
+}
+
 .project-content { flex-basis: 60%; }
 .project-content h3 { font-size: 2rem; margin-bottom: 1rem; }
 .project-content p { margin-bottom: 1.5rem; }
 
-/* Proje Kartı İçin Ek Stiller */
 .project-tagline {
     font-size: 1.1rem;
     font-style: italic;
@@ -176,22 +256,6 @@ body {
     top: 0;
 }
 
-.btn-outline {
-    background: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-    padding: 12px 26px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    display: inline-block;
-    transition: background-color 0.3s, color 0.3s;
-}
-.btn-outline:hover {
-    background: var(--primary-color);
-    color: var(--white-color);
-}
-
 /* --- Hakkımızda ve İletişim --- */
 .about-section { background-color: var(--white-color); }
 .about-text, .contact-section p {
@@ -201,31 +265,6 @@ body {
     font-size: 1.1rem;
 }
 .contact-section { text-align: center; }
-
-
-/* --- Gizlilik Politikası Sayfası --- */
-.legal-page {
-    background-color: var(--white-color);
-    padding: 60px 0;
-}
-.legal-page .container {
-    max-width: 800px;
-}
-.legal-page h2 {
-    font-size: 1.8rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid var(--light-gray-color);
-    padding-bottom: 0.5rem;
-}
-.legal-page p {
-    margin-bottom: 1rem;
-}
-.last-updated {
-    text-align: center;
-    color: #777;
-    margin-bottom: 2rem;
-}
 
 /* --- Footer --- */
 .site-footer {
@@ -240,19 +279,33 @@ body {
     text-decoration: underline;
 }
 
-/* --- RESPONSIVE AYARLARI --- */
+/* --- RESPONSIVE AYARLARI (Mobil Menü Düzeltildi) --- */
 @media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    /* Eski kodda display:none vardı, artık mobilde alt alta görünüyor */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
     .hero-container, .project-card {
         flex-direction: column;
         text-align: center;
     }
+    
     .hero-image {
         margin-top: 2rem;
         margin-bottom: 2rem;
     }
-    .nav-menu {
-        display: none;
-    }
+    
     .hero-title {
         font-size: 2.5rem;
     }
