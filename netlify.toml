@@ -1,5 +1,27 @@
+# --- www → non-www 301 redirect ---
+[[redirects]]
+  from = "https://www.kazak.dev/*"
+  to = "https://kazak.dev/:splat"
+  status = 301
+  force = true
+
+# --- Serve .well-known files directly ---
 [[redirects]]
   from = "/.well-known/*"
   to = "/.well-known/:splat"
   status = 200
   force = true
+
+# --- MojiSpy invite fallback (wildcard → single page) ---
+[[redirects]]
+  from = "/mojispy/invite/*"
+  to = "/mojispy/invite/index.html"
+  status = 200
+  force = true
+
+# --- Headers for assetlinks.json ---
+[[headers]]
+  for = "/.well-known/assetlinks.json"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=3600"
