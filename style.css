@@ -1,11 +1,13 @@
 /* --- Değişkenler ve Genel Ayarlar --- */
 :root {
-    --primary-color: #3B82F6; /* Mavi */
-    --secondary-color: #1F2937; /* Koyu Gri */
-    --background-color: #F9FAFB; /* Çok Açık Gri */
-    --text-color: #374151; /* Metin Rengi */
+    --primary-color: #3B82F6;
+    --secondary-color: #1F2937;
+    --background-color: #F9FAFB;
+    --text-color: #374151;
     --light-gray-color: #E5E7EB;
     --white-color: #FFFFFF;
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    --card-shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
 }
 
 * {
@@ -14,9 +16,7 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -25,26 +25,15 @@ body {
     line-height: 1.7;
 }
 
-/* Metin Seçim Rengi (Marka Rengi) */
 ::selection {
     background-color: var(--primary-color);
     color: var(--white-color);
 }
 
-/* Özel Scrollbar (Modern Görünüm) */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: var(--background-color);
-}
-::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
-    border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-color);
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--background-color); }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
 
 .container {
     max-width: 1100px;
@@ -52,16 +41,16 @@ body {
     padding: 0 20px;
 }
 
-/* --- Navbar (Glassmorphism Efekti Eklendi) --- */
+/* --- Navbar --- */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.85); /* Yarı şeffaf */
-    backdrop-filter: blur(10px); /* Buzlu cam efekti */
-    -webkit-backdrop-filter: blur(10px); /* Safari desteği */
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    border-bottom: 1px solid rgba(0,0,0,0.05); /* İnce modern çizgi */
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .navbar .container {
@@ -87,54 +76,72 @@ body {
 .nav-menu a {
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 700;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
-.nav-menu a:hover {
-    color: var(--primary-color);
-}
+.nav-menu a:hover { color: var(--primary-color); }
 
 /* --- Hero Section --- */
 .hero-section {
-    background-color: var(--white-color);
-    padding: 80px 0;
+    background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 60%, #faf5ff 100%);
+    padding: 90px 0;
+    border-bottom: 1px solid var(--light-gray-color);
 }
+
 .hero-container {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
+
 .hero-content { flex: 1; }
 .hero-image { flex: 1; text-align: center; }
+
+.hero-badge {
+    display: inline-block;
+    background: #EFF6FF;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 1.2rem;
+    border: 1px solid #DBEAFE;
+}
 
 .hero-image img {
     max-width: 300px;
     height: auto;
-    /* Hero resmine hafif süzülme efekti eklenebilir */
-    animation: float 6s ease-in-out infinite; 
+    animation: float 6s ease-in-out infinite;
+    filter: drop-shadow(0 8px 24px rgba(59,130,246,0.15));
 }
 
-/* Basit süzülme animasyonu */
 @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-12px); }
     100% { transform: translateY(0px); }
 }
 
-.hero-title { 
-    font-size: 3.5rem; 
-    font-family: 'Roboto Slab', serif; 
-    color: var(--secondary-color); 
-    margin-bottom: 1rem; 
-    line-height: 1.2; 
-}
-.hero-subtitle { 
-    font-size: 1.2rem; 
-    margin-bottom: 2rem; 
+.hero-title {
+    font-size: 3.5rem;
+    font-family: 'Roboto Slab', serif;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    line-height: 1.15;
 }
 
-/* --- Butonlar (Tıklama Efekti Eklendi) --- */
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: #6B7280;
+    margin-bottom: 2rem;
+    max-width: 480px;
+}
+
+/* --- Buttons --- */
 .btn {
     background: var(--primary-color);
     color: var(--white-color);
@@ -144,13 +151,16 @@ body {
     font-weight: 700;
     display: inline-block;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(59,130,246,0.25);
 }
+
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); /* Mavi gölge */
+    box-shadow: 0 6px 16px rgba(59,130,246,0.35);
 }
+
 .btn:active {
-    transform: scale(0.98); /* Tıklama hissi */
+    transform: scale(0.98);
     box-shadow: none;
 }
 
@@ -165,16 +175,65 @@ body {
     display: inline-block;
     transition: all 0.2s ease;
 }
+
 .btn-outline:hover {
     background: var(--primary-color);
     color: var(--white-color);
     transform: translateY(-2px);
 }
-.btn-outline:active {
-    transform: scale(0.98);
+
+.btn-outline--light {
+    color: #a5b4fc;
+    border-color: #4f46e5;
 }
 
-/* --- Genel Bölüm Ayarları --- */
+.btn-outline--light:hover {
+    background: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+}
+
+/* --- Badges --- */
+.project-meta {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.badge--game {
+    background: #1e1b4b;
+    color: #a5b4fc;
+    border: 1px solid #3730a3;
+}
+
+.badge--new {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.badge--app {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+}
+
+.badge--web {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+/* --- Section Common --- */
 .section-title {
     text-align: center;
     font-size: 2.5rem;
@@ -182,61 +241,157 @@ body {
     margin-bottom: 3rem;
     color: var(--secondary-color);
 }
+
 .projects-section, .about-section, .contact-section {
-    padding: 80px 0;
+    padding: 90px 0;
 }
 
-/* --- Project Card (Geliştirilmiş) --- */
+/* --- Project Cards --- */
 .project-card {
     display: flex;
     gap: 3rem;
     align-items: center;
     background: var(--white-color);
     padding: 3rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.04);
 }
+
 .project-card:hover {
-    transform: translateY(-5px); /* Kart hafifçe yukarı kalkar */
+    transform: translateY(-6px);
+    box-shadow: var(--card-shadow-hover);
 }
 
-.project-image { flex-basis: 40%; }
+/* Dark card variant — for MojiSpy */
+.project-card--dark {
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+    color: #e2e8f0;
+    border: 1px solid #312e81;
+}
 
-.project-image img { 
-    width: 100%; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Resme derinlik */
+.project-card--dark h3 {
+    color: #fff;
+}
+
+.project-card--dark .project-tagline {
+    color: #a5b4fc;
+}
+
+.project-card--dark p {
+    color: #cbd5e1;
+}
+
+.project-card--dark h4 {
+    color: #e0e7ff;
+}
+
+.project-card--dark ul li::before {
+    color: #818cf8;
+}
+
+/* MojiSpy visual panel */
+.mojispy-visual {
+    background: linear-gradient(160deg, #1e1b4b 0%, #0f172a 100%);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid #312e81;
+    box-shadow: 0 0 40px rgba(99,102,241,0.2);
+}
+
+.mojispy-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.emoji-board {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(255,255,255,0.04);
+    padding: 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.emoji-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.emoji-row span {
+    font-size: 1.8rem;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.06);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* General project image */
+.project-image {
+    flex-basis: 40%;
+    flex-shrink: 0;
+}
+
+.project-image > img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
 }
 
-/* Kartın üzerine gelince resim hafif büyüsün */
-.project-card:hover .project-image img {
+.project-card:hover .project-image > img {
     transform: scale(1.02);
 }
 
 .project-content { flex-basis: 60%; }
-.project-content h3 { font-size: 2rem; margin-bottom: 1rem; }
-.project-content p { margin-bottom: 1.5rem; }
+
+.project-content h3 {
+    font-size: 2rem;
+    font-family: 'Roboto Slab', serif;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.project-card--dark .project-content h3 {
+    color: #fff;
+}
+
+.project-content p { margin-bottom: 1.2rem; }
 
 .project-tagline {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-style: italic;
-    color: #666;
-    margin-top: -0.5rem;
-    margin-bottom: 1.5rem;
+    color: #6B7280;
+    margin-bottom: 1.2rem;
 }
 
 .project-content h4 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-family: 'Roboto Slab', serif;
     color: var(--secondary-color);
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.project-card--dark .project-content h4 {
+    color: #e0e7ff;
 }
 
 .project-content ul {
-    list-style: none; 
+    list-style: none;
     padding-left: 0;
     margin-bottom: 1.5rem;
 }
@@ -248,7 +403,7 @@ body {
 }
 
 .project-content ul li::before {
-    content: '✓'; 
+    content: '✓';
     color: var(--primary-color);
     font-weight: bold;
     position: absolute;
@@ -256,14 +411,21 @@ body {
     top: 0;
 }
 
-/* --- Hakkımızda ve İletişim --- */
-.about-section { background-color: var(--white-color); }
+/* --- About & Contact --- */
+.about-section {
+    background-color: var(--white-color);
+    border-top: 1px solid var(--light-gray-color);
+    border-bottom: 1px solid var(--light-gray-color);
+}
+
 .about-text, .contact-section p {
-    max-width: 700px;
+    max-width: 680px;
     margin: 0 auto 1.5rem auto;
     text-align: center;
     font-size: 1.1rem;
+    color: #6B7280;
 }
+
 .contact-section { text-align: center; }
 
 /* --- Footer --- */
@@ -272,21 +434,21 @@ body {
     color: var(--light-gray-color);
     padding: 2rem 0;
     text-align: center;
-    margin-top: 60px;
+    font-size: 0.9rem;
 }
+
 .site-footer a {
     color: var(--white-color);
     text-decoration: underline;
 }
 
-/* --- RESPONSIVE AYARLARI (Mobil Menü Düzeltildi) --- */
+/* --- Responsive --- */
 @media (max-width: 768px) {
     .navbar .container {
         flex-direction: column;
         gap: 1rem;
     }
-    
-    /* Eski kodda display:none vardı, artık mobilde alt alta görünüyor */
+
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -300,16 +462,24 @@ body {
         flex-direction: column;
         text-align: center;
     }
-    
+
+    .hero-subtitle {
+        max-width: 100%;
+    }
+
     .hero-image {
         margin-top: 2rem;
-        margin-bottom: 2rem;
     }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    .section-title {
-        font-size: 2rem;
-    }
+
+    .hero-title { font-size: 2.5rem; }
+    .section-title { font-size: 2rem; }
+
+    .project-image { flex-basis: auto; width: 100%; }
+    .project-content { flex-basis: auto; }
+
+    .mojispy-visual { padding: 20px; }
+
+    .project-meta { justify-content: center; }
+
+    .project-content h3 { font-size: 1.6rem; }
 }

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
     <meta name="google-site-verification" content="U_9wr3pKHcno8eBLFrsJP2tsypaqrQDXD2I_mvkc4lE" />
 </head>
 <body>
@@ -27,6 +27,7 @@
     <header id="hero" class="hero-section">
         <div class="container hero-container">
             <div class="hero-content">
+                <div class="hero-badge">Mobile · Web · Games</div>
                 <h1 class="hero-title">Code That Brings Ideas to Life.</h1>
                 <p class="hero-subtitle">We develop user-centric, modern, and high-performance mobile applications and web tools.</p>
                 <a href="#projects" class="btn">Explore Our Projects</a>
@@ -41,50 +42,96 @@
         <section id="projects" class="projects-section">
             <div class="container">
                 <h2 class="section-title">Featured Projects</h2>
-                
-                <div class="project-card">
+
+                <!-- MojiSpy -->
+                <div class="project-card project-card--dark">
+                    <div class="project-image">
+                        <div class="mojispy-visual">
+                            <img src="images/mojispy_icon.png" alt="MojiSpy App Icon" class="mojispy-icon">
+                            <div class="emoji-board">
+                                <div class="emoji-row"><span>🕵️</span><span>🔍</span><span>✨</span></div>
+                                <div class="emoji-row"><span>🎯</span><span>🟡</span><span>⭕</span></div>
+                                <div class="emoji-row"><span>🧩</span><span>🌟</span><span>💡</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-meta">
+                            <span class="badge badge--game">🎮 Mobile Game</span>
+                            <span class="badge badge--new">New</span>
+                        </div>
+                        <h3>MojiSpy</h3>
+                        <p class="project-tagline">The Emoji Code-Breaking Game — Multiplayer, Competitive, Addictive.</p>
+
+                        <p>MojiSpy is a fast-paced competitive puzzle game where you guess your opponent's secret emoji code before they crack yours. Play ranked matches, climb the leaderboard, and outsmart real opponents from around the world.</p>
+
+                        <h4>What Makes It Fun</h4>
+                        <ul>
+                            <li><strong>Real-time PvP:</strong> Matched against live opponents with ELO-based ranking. Chess-clock time controls for Bullet, Blitz, and Classic modes.</li>
+                            <li><strong>Deep Progression:</strong> Daily missions, weekly events, streak rewards, Elite Pass, and a full coin economy keep every session fresh.</li>
+                            <li><strong>Social Layer:</strong> Invite friends, challenge rivals directly, and share your referral code to earn coins together.</li>
+                        </ul>
+
+                        <h4>Built With</h4>
+                        <p>React Native · Firebase · Firestore real-time sync · Google Play IAP · AdMob</p>
+
+                        <a href="https://play.google.com/store/apps/details?id=com.mojispy.game" class="btn-outline btn-outline--light" target="_blank">
+                            Download on Google Play
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Taskative -->
+                <div class="project-card" style="margin-top: 40px;">
                     <div class="project-image">
                         <img src="images/taskative_logo_slogansız.png" alt="Taskative App Logo">
                     </div>
                     <div class="project-content">
+                        <div class="project-meta">
+                            <span class="badge badge--app">📱 Mobile App</span>
+                        </div>
                         <h3>Taskative: Team Tasks & Shifts</h3>
-                        <p class="project-tagline">Stop Chaos. Start Managing Your Team’s Daily Routines.</p>
-                        
+                        <p class="project-tagline">Stop Chaos. Start Managing Your Team's Daily Routines.</p>
+
                         <p>Taskative is the professional task manager designed for small businesses, field teams, and groups who need clarity without complexity. No confusing dashboards—just clean, fast, and reliable task management.</p>
 
                         <h4>Why Teams Choose Taskative</h4>
                         <ul>
                             <li><strong>Structured Team Management:</strong> Create groups, add your team members, and assign tasks instantly. You have full control over who joins your workspace—simple, secure, and organized.</li>
                             <li><strong>Automate Work with Templates:</strong> Stop rewriting the same tasks every day. Use Reusable Templates for opening/closing checklists, SOPs, shift routines, maintenance tasks, or recurring operations.</li>
-                            <li><strong>Shared Shift & Task Calendar:</strong> Visualize all tasks and shifts in a clean calendar view. Instantly see who is working, what is due, and what’s overdue.</li>
+                            <li><strong>Shared Shift & Task Calendar:</strong> Visualize all tasks and shifts in a clean calendar view. Instantly see who is working, what is due, and what's overdue.</li>
                         </ul>
 
                         <h4>Perfect For</h4>
-                        <p>Retail & Hospitality teams, Cleaning, HVAC, and maintenance crews, Logistics & field operations.</p>
+                        <p>Retail &amp; Hospitality teams, Cleaning, HVAC, and maintenance crews, Logistics &amp; field operations.</p>
 
                         <a href="https://play.google.com/store/apps/details?id=com.taskative&hl=en" class="btn-outline" target="_blank">Download on Google Play</a>
                     </div>
                 </div>
 
+                <!-- Sustainmetrics -->
                 <div class="project-card" style="margin-top: 40px;">
                     <div class="project-image">
                         <img src="images/sustainmetrics_logo.png" alt="Sustainmetrics Dashboard Interface">
                     </div>
                     <div class="project-content">
+                        <div class="project-meta">
+                            <span class="badge badge--web">🌐 Web Tool</span>
+                        </div>
                         <h3>Sustainmetrics: Carbon Footprint Tool</h3>
                         <p class="project-tagline">Clean Design. Fast Interaction. Accurate Results.</p>
-                        
+
                         <p>Sustainmetrics is a lightweight, browser-based carbon accounting tool designed to simplify emission calculations for organizations, sustainability teams, and consultants. It runs entirely in your browser for maximum security and speed.</p>
 
                         <h4>What We Built</h4>
                         <ul>
                             <li><strong>Multi-Source Emission Factors:</strong> Integrated factors from Defra, EPA, and ADEME, allowing users to calculate Scope 1, 2, and 3 emissions using reliable global datasets.</li>
                             <li><strong>Instant Carbon Inventory:</strong> As users add activities, the system automatically updates total emissions. Includes contextual guidance panels for data accuracy.</li>
-                            <li><strong>Save, Load & Excel Export:</strong> Users can save their entries, reload past inventories, and export carbon results directly to Excel for reporting. No login required.</li>
+                            <li><strong>Save, Load &amp; Excel Export:</strong> Users can save their entries, reload past inventories, and export carbon results directly to Excel for reporting. No login required.</li>
                         </ul>
 
-                        <h4>Who It’s For</h4>
-                        <p>Sustainability professionals, environmental engineers, hotel & tourism operations, and consultants preparing carbon reports.</p>
+                        <h4>Who It's For</h4>
+                        <p>Sustainability professionals, environmental engineers, hotel &amp; tourism operations, and consultants preparing carbon reports.</p>
 
                         <a href="https://sustainmetrics.net" class="btn-outline" target="_blank">Visit the Tool</a>
                     </div>
@@ -99,12 +146,12 @@
                 <p class="about-text">We are a software studio with a passion for technology and problem-solving, dedicated to bringing ideas to life. We believe in the principles of clean code and always prioritize user experience. We continue to improve ourselves and our projects through continuous learning.</p>
             </div>
         </section>
-        
+
         <section id="contact" class="contact-section">
             <div class="container">
-                 <h2 class="section-title">Get in Touch</h2>
-                 <p>Have a new project idea or want to collaborate?</p>
-                 <a href="mailto:principlesofmik@gmail.com" class="btn">Send Us an Email</a>
+                <h2 class="section-title">Get in Touch</h2>
+                <p>Have a new project idea or want to collaborate?</p>
+                <a href="mailto:principlesofmik@gmail.com" class="btn">Send Us an Email</a>
             </div>
         </section>
 
