@@ -19,6 +19,13 @@
   status = 200
   force = true
 
+# --- MojiSpy referral fallback (wildcard → single page) ---
+[[redirects]]
+  from = "/mojispy/ref/*"
+  to = "/mojispy/ref/index.html"
+  status = 200
+  force = true
+
 # --- Headers for assetlinks.json ---
 [[headers]]
   for = "/.well-known/assetlinks.json"
