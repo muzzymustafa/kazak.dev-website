@@ -12,11 +12,18 @@
   status = 200
   force = true
 
-# --- MojiSpy invite fallback (wildcard → single page) ---
+# --- MojiSpy join fallback (wildcard → single page) ---
+[[redirects]]
+  from = "/mojispy/join/*"
+  to = "/mojispy/join/index.html"
+  status = 200
+  force = true
+
+# --- MojiSpy old invite links → new join route (301) ---
 [[redirects]]
   from = "/mojispy/invite/*"
-  to = "/mojispy/invite/index.html"
-  status = 200
+  to = "/mojispy/join/:splat"
+  status = 301
   force = true
 
 # --- MojiSpy referral fallback (wildcard → single page) ---

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MojiSpy - Join Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .emoji { font-size: 64px; margin-bottom: 16px; }
+        h1 { font-size: 1.5rem; margin-bottom: 8px; }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+        .spinner {
+            width: 32px; height: 32px;
+            border: 3px solid #334155;
+            border-top-color: #4ade80;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 24px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.85; }
+        .btn-primary {
+            background: #4ade80;
+            color: #0f172a;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #4ade80;
+            border: 2px solid #4ade80;
+        }
+        .footer-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="emoji">🕵️</div>
+        <h1>MojiSpy'a katılıyorsunuz...</h1>
+        <p class="subtitle">Uygulama açılıyor. Lütfen bekleyin.</p>
+        <div class="spinner"></div>
+        <a id="openApp" class="btn btn-primary" href="#">Uygulamayı Aç</a>
+        <a id="playStore" class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.mojispy.game">Play Store'dan İndir</a>
+        <p class="footer-note">Uygulama otomatik açılmazsa "Uygulamayı Aç" butonuna dokun veya Play Store'dan yükle.</p>
+    </div>
+    <script>
+        (function() {
+            var parts = window.location.pathname.split('/join/');
+            var sessionId = parts[1] ? parts[1].replace(/\/+$/, '') : '';
+            var storeUrl = 'https://play.google.com/store/apps/details?id=com.mojispy.game';
+
+            if (!sessionId) {
+                window.location = storeUrl;
+                return;
+            }
+
+            // Android intent URL: opens app if installed, falls back to Play Store
+            var intentUrl = 'intent://join/' + sessionId +
+                '#Intent;scheme=mojispy;package=com.mojispy.game;' +
+                'S.browser_fallback_url=' + encodeURIComponent(storeUrl) + ';end';
+
+            // Standard deep link for iOS / other
+            var appUrl = 'mojispy://join/' + sessionId;
+
+            var isAndroid = /android/i.test(navigator.userAgent);
+
+            document.getElementById('openApp').href = isAndroid ? intentUrl : appUrl;
+
+            // Attempt to open app
+            if (isAndroid) {
+                window.location = intentUrl;
+                // Intent URL handles its own fallback — no setTimeout needed
+            } else {
+                window.location = appUrl;
+                setTimeout(function() {
+                    window.location = storeUrl;
+                }, 2500);
+            }
+        })();
+    </script>
+</body>
+</html>
