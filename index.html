@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kazak.dev - Modern Mobile App Development</title>
+    <meta name="description" content="We develop user-centric, high-performance mobile apps and web tools. Explore MojiSpy, Taskative, and SustainMetrics — built by kazak.dev.">
+    <meta name="keywords" content="mobile app development, React Native, web tools, MojiSpy, Taskative, SustainMetrics, kazak.dev">
+    <link rel="canonical" href="https://kazak.dev/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kazak.dev/">
+    <meta property="og:title" content="kazak.dev - Modern Mobile App Development">
+    <meta property="og:description" content="We develop user-centric, high-performance mobile apps and web tools. Explore MojiSpy, Taskative, and SustainMetrics.">
+    <meta property="og:image" content="https://kazak.dev/images/kazakdev.png">
+    <meta property="og:site_name" content="kazak.dev">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="kazak.dev - Modern Mobile App Development">
+    <meta name="twitter:description" content="We develop user-centric, high-performance mobile apps and web tools.">
+    <meta name="twitter:image" content="https://kazak.dev/images/kazakdev.png">
+
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +33,9 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="nav-brand">kazak.dev</a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-menu">
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -82,7 +103,7 @@
                 </div>
 
                 <!-- Taskative -->
-                <div class="project-card" style="margin-top: 40px;">
+                <div class="project-card" >
                     <div class="project-image">
                         <img src="images/taskative_logo_slogansız.png" alt="Taskative App Logo">
                     </div>
@@ -110,7 +131,7 @@
                 </div>
 
                 <!-- Sustainmetrics -->
-                <div class="project-card" style="margin-top: 40px;">
+                <div class="project-card" >
                     <div class="project-image">
                         <img src="images/sustainmetrics_logo.png" alt="Sustainmetrics Dashboard Interface">
                     </div>
@@ -118,20 +139,20 @@
                         <div class="project-meta">
                             <span class="badge badge--web">🌐 Web Tool</span>
                         </div>
-                        <h3>Sustainmetrics: Carbon Footprint Tool</h3>
-                        <p class="project-tagline">Clean Design. Fast Interaction. Accurate Results.</p>
+                        <h3>SustainMetrics: GHG Calculator &amp; Emission Factor API</h3>
+                        <p class="project-tagline">Accurate Data. Instant Calculations. Professional Reports.</p>
 
-                        <p>Sustainmetrics is a lightweight, browser-based carbon accounting tool designed to simplify emission calculations for organizations, sustainability teams, and consultants. It runs entirely in your browser for maximum security and speed.</p>
+                        <p>SustainMetrics is a carbon accounting platform that simplifies Scope 1, 2, and 3 emission calculations using official government datasets. Free tier available — Pro and Business plans unlock cloud projects, API access, and advanced reporting.</p>
 
                         <h4>What We Built</h4>
                         <ul>
-                            <li><strong>Multi-Source Emission Factors:</strong> Integrated factors from Defra, EPA, and ADEME, allowing users to calculate Scope 1, 2, and 3 emissions using reliable global datasets.</li>
-                            <li><strong>Instant Carbon Inventory:</strong> As users add activities, the system automatically updates total emissions. Includes contextual guidance panels for data accuracy.</li>
-                            <li><strong>Save, Load &amp; Excel Export:</strong> Users can save their entries, reload past inventories, and export carbon results directly to Excel for reporting. No login required.</li>
+                            <li><strong>4 Official Data Sources:</strong> UK DEFRA 2025, US EPA 2025, ADEME Base Carbone, and Ember global electricity data covering 193 countries.</li>
+                            <li><strong>Cloud Projects &amp; Dashboard:</strong> Save inventories to the cloud, track emission trends over time, and manage multiple projects from a single dashboard.</li>
+                            <li><strong>PDF &amp; Excel Export:</strong> Generate professional carbon reports in PDF or Excel format. Compare emission factors across sources and years.</li>
                         </ul>
 
                         <h4>Who It's For</h4>
-                        <p>Sustainability professionals, environmental engineers, hotel &amp; tourism operations, and consultants preparing carbon reports.</p>
+                        <p>Sustainability professionals, ESG consultants, environmental engineers, and organizations preparing carbon footprint reports.</p>
 
                         <a href="https://sustainmetrics.net" class="btn-outline" target="_blank">Visit the Tool</a>
                     </div>
@@ -163,5 +184,17 @@
         </div>
     </footer>
 
+<script>
+document.querySelector('.nav-toggle').addEventListener('click', function() {
+    this.classList.toggle('active');
+    document.querySelector('.nav-menu').classList.toggle('open');
+});
+document.querySelectorAll('.nav-menu a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.querySelector('.nav-toggle').classList.remove('active');
+        document.querySelector('.nav-menu').classList.remove('open');
+    });
+});
+</script>
 </body>
 </html>
