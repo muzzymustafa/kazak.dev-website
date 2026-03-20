@@ -1,3 +1,10 @@
+# --- Serve .well-known from www directly (before www redirect, Android App Links won't follow redirects) ---
+[[redirects]]
+  from = "https://www.kazak.dev/.well-known/*"
+  to = "/.well-known/:splat"
+  status = 200
+  force = true
+
 # --- www → non-www 301 redirect ---
 [[redirects]]
   from = "https://www.kazak.dev/*"
