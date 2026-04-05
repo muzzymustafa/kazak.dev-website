@@ -143,15 +143,30 @@
             // Primary button: intent URL for Android, https URL for others
             document.getElementById('openApp').href = isAndroid ? intentUrl : httpsUrl;
 
-            // Auto-attempt to open
+            // Auto-attempt to open the app.
+            // On Android, App Links should route the HTTPS URL directly to the app
+            // if Digital Asset Links verification succeeded at install time. But if the
+            // user clicks from WhatsApp (in-app browser) or the app was installed BEFORE
+            // assetlinks.json was live, verification may fail — we fall back to intent://.
             if (isAndroid) {
-                // Intent URL handles its own Play Store fallback
                 window.location = intentUrl;
+                // After 2 seconds, if still on this page (app didn't open), the button
+                // is already visible as manual fallback — hide spinner to reduce confusion.
+                setTimeout(function() {
+                    document.getElementById('spinner').style.display = 'none';
+                    document.querySelector('.subtitle').textContent =
+                        'Tap "Open Taskative" below. If not installed, use the Play Store button.';
+                }, 2000);
             } else if (isIOS) {
-                // iOS: try deep link, fallback to store after delay (app not published on iOS currently)
-                setTimeout(function() { window.location = storeUrl; }, 2500);
+                // iOS: app not published yet — show store immediately
+                document.getElementById('spinner').style.display = 'none';
+                document.querySelector('.subtitle').textContent = 'Taskative is available on Google Play.';
+            } else {
+                // Desktop: hide spinner, let user pick via buttons
+                document.getElementById('spinner').style.display = 'none';
+                document.querySelector('.subtitle').textContent =
+                    'Open this link on your Android device to join the team.';
             }
-            // Desktop: just show the card with buttons, no auto-redirect
         })();
     </script>
 </body>
