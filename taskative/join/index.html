@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#4CAF50">
+    <title>Taskative — Join Team</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #66BB6A 0%, #4CAF50 60%, #2E7D32 100%);
+            color: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 16px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 48px 32px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.25);
+        }
+        .logo {
+            width: 72px;
+            height: 72px;
+            background: #4CAF50;
+            border-radius: 18px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo svg { width: 42px; height: 42px; }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: #1a1a1a;
+            font-weight: 700;
+        }
+        .subtitle {
+            color: #6B7280;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+            line-height: 1.5;
+        }
+        .spinner {
+            width: 36px; height: 36px;
+            border: 3px solid #E5E7EB;
+            border-top-color: #4CAF50;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 24px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(76,175,80,0.25); }
+        .btn-primary {
+            background: #4CAF50;
+            color: #ffffff;
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #4CAF50;
+            border: 2px solid #4CAF50;
+        }
+        .footer-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: #9CA3AF;
+            line-height: 1.5;
+        }
+        .error-msg {
+            color: #EF4444;
+            font-size: 0.9rem;
+            padding: 12px;
+            background: #FEE2E2;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .error-msg.visible { display: block; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 12l5 5L20 7" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h1>Join your team</h1>
+        <p class="subtitle">Opening Taskative… If nothing happens, tap the button below.</p>
+        <div id="errorMsg" class="error-msg"></div>
+        <div class="spinner" id="spinner"></div>
+        <a id="openApp" class="btn btn-primary" href="#">Open Taskative</a>
+        <a id="playStore" class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.taskative">Get it on Play Store</a>
+        <p class="footer-note">After installing, open the invite link again to join your team automatically.</p>
+    </div>
+    <script>
+        (function() {
+            var path = window.location.pathname;
+            var parts = path.split('/join/');
+            var sessionId = parts[1] ? parts[1].replace(/\/+$/, '').split('?')[0] : '';
+            var storeUrl = 'https://play.google.com/store/apps/details?id=com.taskative';
+
+            if (!sessionId) {
+                document.getElementById('errorMsg').textContent = 'Invalid invite link. Redirecting to Play Store…';
+                document.getElementById('errorMsg').classList.add('visible');
+                document.getElementById('spinner').style.display = 'none';
+                setTimeout(function() { window.location = storeUrl; }, 2000);
+                return;
+            }
+
+            // HTTPS App Links: the full kazak.dev URL IS the deep link.
+            // On Android with verified Digital Asset Links, OS routes directly to app.
+            // For in-app browsers (WhatsApp, etc.) that don't auto-route, we wrap in intent://.
+            var httpsUrl = window.location.href;
+            var intentUrl = 'intent://kazak.dev/taskative/join/' + sessionId +
+                '#Intent;scheme=https;package=com.taskative;' +
+                'S.browser_fallback_url=' + encodeURIComponent(storeUrl) + ';end';
+
+            var isAndroid = /android/i.test(navigator.userAgent);
+            var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+            // Primary button: intent URL for Android, https URL for others
+            document.getElementById('openApp').href = isAndroid ? intentUrl : httpsUrl;
+
+            // Auto-attempt to open
+            if (isAndroid) {
+                // Intent URL handles its own Play Store fallback
+                window.location = intentUrl;
+            } else if (isIOS) {
+                // iOS: try deep link, fallback to store after delay (app not published on iOS currently)
+                setTimeout(function() { window.location = storeUrl; }, 2500);
+            }
+            // Desktop: just show the card with buttons, no auto-redirect
+        })();
+    </script>
+</body>
+</html>

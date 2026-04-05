@@ -33,6 +33,13 @@
   status = 200
   force = true
 
+# --- Taskative join fallback (wildcard → single page) ---
+[[redirects]]
+  from = "/taskative/join/*"
+  to = "/taskative/join/index.html"
+  status = 200
+  force = true
+
 # --- Headers for assetlinks.json ---
 [[headers]]
   for = "/.well-known/assetlinks.json"

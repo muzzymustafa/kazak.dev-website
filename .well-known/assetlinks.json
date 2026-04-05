@@ -11,5 +11,18 @@
         "3F:CA:2E:0E:4F:3E:1B:DA:A5:20:65:E7:6C:87:FA:D6:1F:33:BE:E1:0A:54:88:49:4A:76:DA:C3:55:F0:DC:45"
       ]
     }
+  },
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.taskative",
+      "sha256_cert_fingerprints": [
+        "10:65:82:1B:D2:12:A2:07:4A:3D:5E:F0:0E:1C:C7:11:77:69:86:EB:0A:25:67:C9:52:F5:C7:56:61:30:37:16"
+      ]
+    }
   }
 ]
