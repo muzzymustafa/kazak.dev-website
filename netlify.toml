@@ -45,7 +45,7 @@
   for = "/.well-known/assetlinks.json"
   [headers.values]
     Content-Type = "application/json"
-    Cache-Control = "public, max-age=3600"
+    Cache-Control = "public, max-age=60"
 
 # --- Global Security Headers ---
 [[headers]]
