@@ -30,6 +30,10 @@
     --text-muted:  #9AA4BC;
     --text-dim:    #6B7388;
 
+    /* Logo plate — warm off-white so dark-on-white brand marks read on dark surface */
+    --logo-plate:        #F6F1E6;
+    --logo-plate-border: rgba(255, 213, 142, 0.22);
+
     /* Radii */
     --r-sm: 14px;
     --r-md: 18px;
@@ -277,11 +281,11 @@ button:focus-visible,
     max-width: 320px;
     width: 100%;
     height: auto;
-    background: #fff;
+    background: var(--logo-plate);
     padding: 36px 44px;
     border-radius: 28px;
     animation: float 6s ease-in-out infinite;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px var(--outline-strong);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px var(--logo-plate-border);
 }
 
 @keyframes float {
@@ -492,10 +496,10 @@ section { padding: 96px 0; }
     max-height: 240px;
     width: auto;
     height: auto;
-    background: #fff;
+    background: var(--logo-plate);
     padding: 28px 36px;
     border-radius: 20px;
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--outline-strong);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--logo-plate-border);
     transition: transform var(--t-base) var(--ease);
 }
 
