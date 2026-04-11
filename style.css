@@ -274,11 +274,14 @@ button:focus-visible,
 .hero-image img {
     position: relative;
     z-index: 1;
-    max-width: 280px;
+    max-width: 320px;
     width: 100%;
     height: auto;
+    background: #fff;
+    padding: 36px 44px;
+    border-radius: 28px;
     animation: float 6s ease-in-out infinite;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px var(--outline-strong);
 }
 
 @keyframes float {
@@ -489,7 +492,10 @@ section { padding: 96px 0; }
     max-height: 240px;
     width: auto;
     height: auto;
-    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.5));
+    background: #fff;
+    padding: 28px 36px;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--outline-strong);
     transition: transform var(--t-base) var(--ease);
 }
 
