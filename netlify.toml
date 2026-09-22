@@ -1,3 +1,10 @@
+# --- www .well-known: 200 serve (App Links verification redirect takip etmez) ---
+[[redirects]]
+  from = "https://www.kazak.dev/.well-known/*"
+  to = "/.well-known/:splat"
+  status = 200
+  force = true
+
 # --- www → non-www 301 redirect ---
 [[redirects]]
   from = "https://www.kazak.dev/*"
